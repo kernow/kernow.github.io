@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites - Kernow Soul</title>
+  <meta name="author" content="Jamie Dyer">
+
+  
+  <meta name="description" content="I came across a problem today while writing tests in JavaScript. The code I was testing required a snippet of HTML to work with. A user list needed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Kernow Soul" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28880530-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><a href="https://github.com/kernow"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<hgroup>
+  <h1><a href="/">Kernow Soul</a></h1>
+  
+    <h2>Ruby, Rails and JavaScript Consultant</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kernowsoul.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/hire-me">Hire Me</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-06T15:32:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2010</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kernowsoul.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I came across a problem today while writing tests in JavaScript. The code I was testing required a snippet of HTML to work with. A user list needed to be reordered depending on their status. No problem I thought, I&rsquo;ll create div to store an HTML snippet, then before my test I&rsquo;ll duplicate and copy it into a test div.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;snippets&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;user-list-snippet&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-0&quot;</span><span class="nt">&gt;</span>Shaun White<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-0-status&#39;</span><span class="nt">&gt;</span>busy<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-1&quot;</span><span class="nt">&gt;</span>Jeremy Jones<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-1-status&#39;</span><span class="nt">&gt;</span>online<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-2&quot;</span><span class="nt">&gt;</span>Jake Burton<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-2-status&#39;</span><span class="nt">&gt;</span>offline<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-3&quot;</span><span class="nt">&gt;</span>Tara Dakides<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-3-status&#39;</span><span class="nt">&gt;</span>online<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the JavaScript to copy the element:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#user-list-snippet&quot;</span><span class="p">).</span><span class="nx">clone</span><span class="p">().</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;user-list&quot;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dom_test&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course when working with id&rsquo;s in HTML they have to be unique so the technique caused some of the other tests in the suite to fail, I needed to find another way to do this. One thing I hate is using <a href="http://jquery.com">jQuery</a> to create more than a few dom elements as it gets complex very quickly and it&rsquo;s not easy to see if the code is producing the desired HTML at a glance.</p>
+
+<p>After taking a break I came up with a simple solution, the Scupper library was about to be written. I wanted to write snippets in HTML so I kept the snippet used in the first attempt. I then created a library that collected all of the snippets from the dom, storing them internally, before deleting them from the dom. This allowed the dom to be free from conflicting id&rsquo;s and general pollution. The HTML snippet became:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;snippets&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;user-list-snippet&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;user-list&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-0&quot;</span><span class="nt">&gt;</span>Shaun White<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-0-status&#39;</span><span class="nt">&gt;</span>busy<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-1&quot;</span><span class="nt">&gt;</span>Jeremy Jones<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-1-status&#39;</span><span class="nt">&gt;</span>online<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-2&quot;</span><span class="nt">&gt;</span>Jake Burton<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-2-status&#39;</span><span class="nt">&gt;</span>offline<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;user-3&quot;</span><span class="nt">&gt;</span>Tara Dakides<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&#39;user-3-status&#39;</span><span class="nt">&gt;</span>online<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The containing div #user-list-snippet gives an element to latch onto in order to grab the contents inside. I created a method that sucks up all snippets inside a dom element and stores them:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element_id</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">element_id</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">element</span><span class="p">.</span><span class="nx">children</span><span class="p">().</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">elm</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">elm</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">Scupper</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">elm</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">element</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All that was needed is an easy way to pull them out an insert them into the dom:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">insert_into</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source_id</span><span class="p">,</span> <span class="nx">destination_id</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">destination_id</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">Scupper</span><span class="p">.</span><span class="nx">retrieve</span><span class="p">(</span><span class="nx">source_id</span><span class="p">));</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">retrieve</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">Scupper</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">Scupper</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>    <span class="k">throw</span> <span class="s2">&quot;Requested Scupper element not found with id: &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Calling insert_into() grabs the snippet HTML and inserts it into the specified dom element ready for the test to use it.</p>
+
+<p>If you want to use Scupper the source is <a href="http://github.com/kernow/Scupper/">freely available on github</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jamie Dyer</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-06T15:32:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/tags/javascript/'>JavaScript</a>, <a class='category' href='/blog/tags/testing/'>Testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/" data-via="kernowsoul" data-counturl="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/10/07/shoulda-macro-shouldrenderaformto/" title="Previous Post: Shoulda macro should_render_a_form_to">&laquo; Shoulda macro should_render_a_form_to</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/" title="Next Post: Programatically simulating JavaScript events in a test environment">Programatically simulating JavaScript events in a test environment &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Jamie Dyer is a Ruby, Rails and JavaScript consultant based in Bristol, UK.</h1>
+  <p>If you'd like to hire me to work on your project please <a href="/hire-me">get in touch</a>.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/how-to-rumble-like-a-boss/">How to Rumble Like a Boss</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/">4 Ways to Avoid Merge Commits in Git (or How to Stop Being a Git Twit)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/09/29/brug-talk/">BRUG Talk</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/">Programatically Simulating JavaScript Events in a Test Environment</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/">Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites</a>
+      </li>
+    
+  </ul>
+</section>
+
+<a href="https://twitter.com/kernowsoul" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @kernowsoul</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jamie Dyer -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kernowsoul';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/';
+        var disqus_url = 'http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

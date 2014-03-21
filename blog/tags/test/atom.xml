@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Test | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/test/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Shoulda macro should_render_a_form_to]]></title>
+    <link href="http://kernowsoul.com/blog/2009/10/07/shoulda-macro-shouldrenderaformto/"/>
+    <updated>2009-10-07T16:49:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/10/07/shoulda-macro-shouldrenderaformto</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been writing a fair number of functional tests recently, one thing that kept cropping up was the need to check if a form had been rendered and that it is going to perform a particular action. Shoulda has a should_render_a_form macro, unfortunately it&rsquo;s been depreciated and doesn&rsquo;t do anything other than check a form element has been rendered in the view.</p>
+
+<p>I decided to come up with my own macro that checks the specifics of a form element, enter should_render_a_form_to. This takes three arguments, a description, an options hash and a block that contains the expected url. You can use the macro as follows&hellip;</p>
+
+<p>Check there is a form posting to the new_user_post_path:
+<code>ruby
+should_render_a_form_to("create a new post", {:method =&gt; "post"}) { new_user_post_path(@user.id) }
+</code></p>
+
+<p>Check there is a form putting to the user_post_path and that the form has the id of &lsquo;post_edit_form&rsquo;:
+<code>ruby
+should_render_a_form_to("update a post", {:method =&gt; "put", :id =&gt; "post_edit_form"}) { user_post_path( :user_id =&gt; @user.id, :id =&gt; 1) }
+</code></p>
+
+<p>The macro code is available on <a href="http://github.com/kernow/shoulda/tree/form_macro">github</a> with test coverage. If you just want to cut and paste into your own macro&rsquo;s file:</p>
+
+<p>``` ruby
+def should_render_a_form_to(description, options = {}, &amp;block)
+  should &ldquo;render a form to #{description}&rdquo; do</p>
+
+<pre><code>expected_url  = instance_eval(&amp;block)
+form_method   = case options[:method]
+  when "post", "put", "delete" : "post"
+  else "get"
+  end
+assert_select "form[action=?][method=?]",
+              expected_url,
+              form_method,
+              true,
+              "The template doesn't contain a &lt;form&gt; element with the action #{expected_url}" do |elms|
+
+  if options[:id]
+    elms.each do |elm|
+      assert_select elm,
+                    "##{options[:id]}",
+                    true,
+                    "The template doesn't contain a &lt;form&gt; element with the id #{options[:id]}"
+    end
+  end
+
+  unless %w{get post}.include? options[:method]
+    assert_select "input[name=_method][value=?]",
+                  options[:method],
+                  true,
+                  "The template doesn't contain a &lt;form&gt; for #{expected_url} using the method #{options[:method]}"
+  end
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>The macro checks both the forms action attribute as well as the hidden input rails uses to specify the method where necessary. I&rsquo;ve also been playing with creating a macro to check for a form with specific fields such as should_render_a_form_with_fields. This is proving to be slightly more difficult than I originally anticipated and defining a nice interface to the method has been rather tricky.</p>
+]]></content>
+  </entry>
+  
+</feed>

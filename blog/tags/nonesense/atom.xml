@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Nonesense | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/nonesense/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Colour profiles in Photoshop for web design]]></title>
+    <link href="http://kernowsoul.com/blog/2008/09/26/colour-profiles-in-photoshop-for-web-design/"/>
+    <updated>2008-09-26T18:06:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/09/26/colour-profiles-in-photoshop-for-web-design</id>
+    <content type="html"><![CDATA[<p>While getting the photo of my <a href="http://kernowsoul.com/blog/2008/09/26/my-new-business-cards-have-arrived/">new business card</a> ready for the web I fired up Photoshop on the laptop. I soon realised I&rsquo;d not used Photoshop on the laptop before, when I hit the save for web button my lovely photo changed into something hideously washed out. As someone who rarely uses Photoshop these days I always forget how to set-up colour profiles and spent quite some time doing this on the desktop machine.</p>
+
+<p>To my relief a quick google search and a couple of minutes later I was all set-up and had exported my photo exactly how it should be. Thanks <a href="http://www.usabilitypost.com">Usability Post</a> for your amazingly simple and accurate <a href="http://www.usabilitypost.com/2008/07/30/photoshop-color-profiles-for-web-images/">guide to setting up colour profiles for web design</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

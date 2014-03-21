@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/ruby/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[BRUG talk]]></title>
+    <link href="http://kernowsoul.com/blog/2010/09/29/brug-talk/"/>
+    <updated>2010-09-29T15:38:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2010/09/29/brug-talk</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ll be doing a talk at <a href="http://bristolrb.org">BRUG</a> tomorrow evening (29th September 2010) on JavaScript <a href="http://kernowsoul.com/blog/tags/testing/">testing</a> covering some of the more awkward testing scenarios you may come across in <a href="http://kernowsoul.com/blog/tags/javascript/">JavaScript</a> land. This months BRUG is at <a href="http://wearebeef.co.uk/">Beef Towers</a>, hopefully we&rsquo;ll see some new faces this month.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vlad the Deployer Hoptoad Integration]]></title>
+    <link href="http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/"/>
+    <updated>2009-09-04T11:46:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just had to setup <a href="http://hoptoadapp.com">Hoptoad</a> for one of our apps that uses <a href="http://rubyhitsquad.com/Vlad_the_Deployer.html">Vlad</a> for deployment, the integration isn&rsquo;t quite as easy as with <a href="http://www.capify.org">Capistrano</a>. I couldn&rsquo;t find much information on how to integrate the two so I thought I&rsquo;d share my solution.</p>
+
+<p>The original Hoptoad task for use with Capistrano needed a little modification.</p>
+
+<p><code>ruby
+task :notify_hoptoad do
+  rails_env = fetch(:rails_env, "production")
+  local_user = ENV['USER'] || ENV['USERNAME']
+  notify_command = "rake hoptoad:deploy TO=#{rails_env} REVISION=#{current_revision} REPO=#{repository} USER=#{local_user}"
+  puts "Notifying Hoptoad of Deploy (#{notify_command})"
+  `#{notify_command}`
+  puts "Hoptoad Notification Complete."
+end
+</code></p>
+
+<p>fetch is a Capistrano method so needed to be removed, we can use the <a href="http://hitsquad.rubyforge.org/vlad/doco/getting_started_txt.html">Vlad environment pattern</a> for this. I also wanted to use the git information for the user instead of the system user, finally as far as I can tell the git commit SHA being deployed is not available in Vlad.</p>
+
+<p>In the Vlad deployment script I added a Hoptoad task to replace the default Capistrano task provided by Hoptoad.</p>
+
+<p><code>ruby
+task :notify_hoptoad =&gt; [:git_user, :git_revision] do
+  notify_command = "rake hoptoad:deploy TO=#{rails_env} REVISION=#{current_sha} REPO=#{repository} USER='#{current_user}'"
+  puts "Notifying Hoptoad of Deploy (#{notify_command})"
+  `#{notify_command}`
+  puts "Hoptoad Notification Complete."
+end
+</code></p>
+
+<p>Then added it as a dependency for the deploy task</p>
+
+<p><code>ruby
+task :deploy =&gt; [:update, :migrate, :start_app, :notify_hoptoad]
+</code></p>
+
+<p>There are a couple of helper tasks I&rsquo;ve added to get the git user and the SHA of the commit being deployed</p>
+
+<p>``` ruby
+remote_task :git_revision do
+  set :current_sha, run(&ldquo;cd #{File.join(scm_path, &lsquo;repo&rsquo;)}; git rev-parse origin/master&rdquo;).strip
+end</p>
+
+<p>task :git_user do
+  set :current_user, <code>git config --get user.name</code>.strip
+end
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[For the love of table football, why I stayed up for 48 hours]]></title>
+    <link href="http://kernowsoul.com/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours/"/>
+    <updated>2009-08-24T01:05:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours</id>
+    <content type="html"><![CDATA[<p><strong>Update:</strong> wuzlr.com is no longer a live site</p>
+
+<p>What a weekend! it all started on Friday night, a feverish last minute planning session began on how we would implement "Wuzlr". We'd bounced around some ideas earlier in the week and had a pretty good idea of what we wanted, whittling that down into a set of features we could implement in 48 hours was no easy task, there was so many good ideas and we didn't have time to implement them all. At 1am it all began...</p>
+
+
+
+
+<h3>The Pitch</h3>
+
+
+
+
+<p>If your office is anything like ours things get pretty serious whenever a game of table football breaks out (especially when <a href="http://twitter.com/theozaurus">@theozaurus</a> is playing). We've wanted a way to track who's the best in the office for quite some time, finally we have just the thing, and so do you. Wuzlr is a table football league tracking application that lets you see performance over time with all sorts of fun and interesting facts and figures displayed.</p>
+
+
+
+
+<p>Wuzlr (or wuzler if you use the correct non web 2.0 spelling) is the Austrian word for table football and just so happened to be the first domain we came across that's still available. We also liked the hat tip to the 'e' dropping crowd, no, not you party people, I'm talking about flickr and the like.</p>
+
+
+
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/gGYnFlC7i7E&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/gGYnFlC7i7E&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+
+
+<h3>Application Features</h3>
+
+
+
+
+<ul>
+  <li>Create leagues and record all your games,
+<s>Check out the <a href="#">Jiva office league</a></s></li>
+
+  <li>Compare yourself to other players,
+Me Vs. Theo <br /><img src="http://kernowsoul.com/images/uploaded/wuzlr-compare.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
+
+  <li>View your nemesis, best team mate, worst team mate and more, <s><a href="#">my player page</a></s></li>
+
+  <li>League standings, games played per day, table bias, most dedicated players (who's put the most time in) <br /><img src="http://kernowsoul.com/images/uploaded/wuzlr-graphs.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
+</ul>
+
+
+
+
+<h3>Our Team</h3>
+
+
+
+
+<ul>
+  <li>Jamie Dyer <a href="http://twitter.com/kernowsoul">@kernowsoul</a> Developer for <a href="http://jivatechnology.com/">Jiva</a></li>
+  <li>Theo Coushion <a href="http://twitter.com/theozaurus">@theozaurus</a> Developer for <a href="http://jivatechnology.com/">Jiva</a></li>
+  <li>Peter Coles <a href="http://twitter.com/fatelvis">@fatelvis</a> Designer for <a href="http://www.existem.com/">Existem</a></li>
+</ul>
+
+
+
+
+<p>Yes we know the site looks terrible in IE, who uses IE anyway?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My computer loves autotest-fsevent]]></title>
+    <link href="http://kernowsoul.com/blog/2009/06/04/my-computer-loves-autotest-fsevent/"/>
+    <updated>2009-06-04T13:10:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/06/04/my-computer-loves-autotest-fsevent</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m a big fan of <a href="http://www.zenspider.com/ZSS/Products/ZenTest/">autotest</a> for testing, unfortunately it does stress my poor MacBook Pro and makes the fan go berserk if running anything other than the most simple of test suites. This is due to autotest having to check each file in your project for changes.</p>
+
+<p>No more will autotest stress out my mac, <a href="http://www.bitcetera.com/en/products/autotest-fsevent">autotest-fsevent</a> is a great gem that uses OS X&rsquo;s FSEvent system to be notified when files have changed rather than having to constantly poll the filesystem. You need mac OS X 10.5 or later to take advantage of FSEvent.</p>
+
+<p>The other nice thing autotest-fsevent does is take care of all the .autotest config options, I managed to delete my entire config file which I&rsquo;ve been tweaking for as long as I can remember trying to get the perfect setup.</p>
+
+<p>I can now run even the most demanding of test suites and my computer barely breaks a sweat. Thanks <a href="http://www.bitcetera.com">bitcetera</a>, my computer &hearts;&rsquo;s you.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[DRYing up multiple user contexts with shoulda macros]]></title>
+    <link href="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/"/>
+    <updated>2009-05-22T00:14:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros</id>
+    <content type="html"><![CDATA[<p>Today I&rsquo;ve been writing tests for a legacy Rails application I inherited recently. The application has several user roles, each role having varying permissions. To deal with this nicely I setup <a href="http://thoughtbot.com/projects/shoulda">shoulda</a> macro&rsquo;s to create contexts for each of the user roles, public user, standard user, admin user etc. then in my tests I could write&hellip;</p>
+
+<p>``` ruby
+public_context do</p>
+
+<p>  context &ldquo;on GET to :index&rdquo; do</p>
+
+<pre><code>setup do
+  get :index
+end
+
+should_redirect_to("root url") { root_url }
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>signed_in_user_context do</p>
+
+<p>  context &ldquo;on GET to :index&rdquo; do</p>
+
+<pre><code>setup do
+  get :index
+end
+
+should_redirect_to("user url") { user_url }
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>This is pretty standard practice now and something I picked up from looking at the code produced by the guys at <a href="http://thoughtbot.com">Thought Bot</a>. While working on the test suite it became apparent many of the methods behaved in the same way for multiple user roles. I wanted to come up with a way to run a group of tests under multiple user roles without having to duplicate any code. Shoulda macros to the rescue again! After creating another macro to deal with multiple contexts I can write my tests like this&hellip;</p>
+
+<p>``` ruby
+multiple_contexts &lsquo;public_context&rsquo;, &lsquo;signed_in_user_context&rsquo; do</p>
+
+<p>  context &ldquo;on GET to :show&rdquo; do</p>
+
+<pre><code>setup do
+  @advert = Factory(:advert)
+  get :show, :id =&gt; @advert.to_param
+end
+
+should_render_with_layout :application
+should_render_template :show
+should_not_set_the_flash
+should_assign_to( :advert ) { @advert }  
+should_respond_with :success
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>And the shoulda macro code itself&hellip;</p>
+
+<p>``` ruby
+def multiple_contexts(*contexts, &amp;blk)
+  contexts.each { |context|</p>
+
+<pre><code>send(context, &amp;blk) if respond_to?(context)
+</code></pre>
+
+<p>  }
+end</p>
+
+<p>def public_context(&amp;blk)
+  context &ldquo;The public&rdquo; do</p>
+
+<pre><code>setup { sign_out }
+merge_block(&amp;blk)
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>def signed_in_user_context(&amp;blk)
+  context &ldquo;A signed in user&rdquo; do</p>
+
+<pre><code>setup do
+  @user = Factory(:user)
+  sign_in_as @user
+end
+merge_block(&amp;blk)
+</code></pre>
+
+<p>  end
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

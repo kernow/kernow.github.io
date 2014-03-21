@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mod_rails | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/mod-rails/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Running Merb on a shared host without compiler permissions]]></title>
+    <link href="http://kernowsoul.com/blog/2008/11/21/running-merb-on-a-shared-host-without-compiler-permissions/"/>
+    <updated>2008-11-21T13:54:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/11/21/running-merb-on-a-shared-host-without-compiler-permissions</id>
+    <content type="html"><![CDATA[<p>I ran into a problem earlier today when testing a <a href="http://merbivore.com">Merb</a> application in a shared hosting environment running <a href="http://www.modrails.com">Phusion Passenger</a>. Like most shared hosts access to compilers is not allowed for obvious security reasons, this causes a problem when trying to run a Merb app. Merb makes use of <a href="http://rubyforge.org/projects/rubyinline/">RubyInline</a> which needs to compile a C application in your home folder before it can run so when the user you&rsquo;re running Merb under doesn&rsquo;t have permission to run C compilers you&rsquo;ll get an error similar to:</p>
+
+<p><code>bash
+sh: /usr/bin/gcc: Permission denied
+</code></p>
+
+<p>The way to get around this is to have a privileged user compile the C application for you, then copy it to your users home folder. The easiest way to do this is to generate and run a Merb app as the root user:</p>
+
+<p><code>bash
+merb-gen app tmp-merb
+merb
+Ctrl+C
+</code></p>
+
+<p>Then copy the RubyInline C application to the users home folder:</p>
+
+<p><code>bash
+cp -R /root/.ruby_inline /home/&lt;username&gt;
+</code></p>
+
+<p>Make sure the file ownership is set correctly:</p>
+
+<p><code>bash
+chown -R &lt;username&gt;:&lt;username&gt; /home/&lt;username&gt;/.ruby_inline
+</code></p>
+
+<p>After this you should be able to run Merb as expected. If you&rsquo;re still getting errors relating to file permissions after following the instructions above you&rsquo;ll need to combine the fix from <a href="http://www.viget.com/extend/rubyinline-in-shared-rails-environments/">Vignet</a> and put the .ruby_inline folder in a place accessible to both the apache user and the user running the Merb app, I&rsquo;ve not tested this but it should work.</p>
+]]></content>
+  </entry>
+  
+</feed>

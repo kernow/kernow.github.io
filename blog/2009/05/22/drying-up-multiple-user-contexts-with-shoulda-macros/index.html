@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DRYing Up Multiple User Contexts With Shoulda Macros - Kernow Soul</title>
+  <meta name="author" content="Jamie Dyer">
+
+  
+  <meta name="description" content="Today I&rsquo;ve been writing tests for a legacy Rails application I inherited recently. The application has several user roles, each role having &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Kernow Soul" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28880530-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><a href="https://github.com/kernow"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<hgroup>
+  <h1><a href="/">Kernow Soul</a></h1>
+  
+    <h2>Ruby, Rails and JavaScript Consultant</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kernowsoul.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/hire-me">Hire Me</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">DRYing Up Multiple User Contexts With Shoulda Macros</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-22T00:14:00+01:00" pubdate data-updated="true">May 22<span>nd</span>, 2009</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kernowsoul.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today I&rsquo;ve been writing tests for a legacy Rails application I inherited recently. The application has several user roles, each role having varying permissions. To deal with this nicely I setup <a href="http://thoughtbot.com/projects/shoulda">shoulda</a> macro&rsquo;s to create contexts for each of the user roles, public user, standard user, admin user etc. then in my tests I could write&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">public_context</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;on GET to :index&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:index</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">should_redirect_to</span><span class="p">(</span><span class="s2">&quot;root url&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">root_url</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">signed_in_user_context</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;on GET to :index&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:index</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">should_redirect_to</span><span class="p">(</span><span class="s2">&quot;user url&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">user_url</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is pretty standard practice now and something I picked up from looking at the code produced by the guys at <a href="http://thoughtbot.com">Thought Bot</a>. While working on the test suite it became apparent many of the methods behaved in the same way for multiple user roles. I wanted to come up with a way to run a group of tests under multiple user roles without having to duplicate any code. Shoulda macros to the rescue again! After creating another macro to deal with multiple contexts I can write my tests like this&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">multiple_contexts</span> <span class="s1">&#39;public_context&#39;</span><span class="p">,</span> <span class="s1">&#39;signed_in_user_context&#39;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;on GET to :show&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@advert</span> <span class="o">=</span> <span class="no">Factory</span><span class="p">(</span><span class="ss">:advert</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="vi">@advert</span><span class="o">.</span><span class="n">to_param</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">should_render_with_layout</span> <span class="ss">:application</span>
+</span><span class='line'>    <span class="n">should_render_template</span> <span class="ss">:show</span>
+</span><span class='line'>    <span class="n">should_not_set_the_flash</span>
+</span><span class='line'>    <span class="n">should_assign_to</span><span class="p">(</span> <span class="ss">:advert</span> <span class="p">)</span> <span class="p">{</span> <span class="vi">@advert</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">should_respond_with</span> <span class="ss">:success</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the shoulda macro code itself&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">multiple_contexts</span><span class="p">(</span><span class="o">*</span><span class="n">contexts</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">contexts</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">context</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">send</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span> <span class="k">if</span> <span class="nb">respond_to?</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">public_context</span><span class="p">(</span><span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;The public&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">setup</span> <span class="p">{</span> <span class="n">sign_out</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">merge_block</span><span class="p">(</span><span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">signed_in_user_context</span><span class="p">(</span><span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;A signed in user&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@user</span> <span class="o">=</span> <span class="no">Factory</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">sign_in_as</span> <span class="vi">@user</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">merge_block</span><span class="p">(</span><span class="o">&amp;</span><span class="n">blk</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jamie Dyer</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-22T00:14:00+01:00" pubdate data-updated="true">May 22<span>nd</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/tags/rails/'>Rails</a>, <a class='category' href='/blog/tags/ruby/'>Ruby</a>, <a class='category' href='/blog/tags/testing/'>Testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/" data-via="kernowsoul" data-counturl="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/04/27/running-jslint-through-textmate/" title="Previous Post: Running JSLint through TextMate">&laquo; Running JSLint through TextMate</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/06/04/my-computer-loves-autotest-fsevent/" title="Next Post: My computer loves autotest-fsevent">My computer loves autotest-fsevent &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Jamie Dyer is a Ruby, Rails and JavaScript consultant based in Bristol, UK.</h1>
+  <p>If you'd like to hire me to work on your project please <a href="/hire-me">get in touch</a>.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/how-to-rumble-like-a-boss/">How to Rumble Like a Boss</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/">4 Ways to Avoid Merge Commits in Git (or How to Stop Being a Git Twit)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/09/29/brug-talk/">BRUG Talk</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/">Programatically Simulating JavaScript Events in a Test Environment</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/">Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites</a>
+      </li>
+    
+  </ul>
+</section>
+
+<a href="https://twitter.com/kernowsoul" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @kernowsoul</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jamie Dyer -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kernowsoul';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/';
+        var disqus_url = 'http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

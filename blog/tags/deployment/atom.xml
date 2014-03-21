@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Deployment | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/deployment/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vlad the Deployer Hoptoad Integration]]></title>
+    <link href="http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/"/>
+    <updated>2009-09-04T11:46:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just had to setup <a href="http://hoptoadapp.com">Hoptoad</a> for one of our apps that uses <a href="http://rubyhitsquad.com/Vlad_the_Deployer.html">Vlad</a> for deployment, the integration isn&rsquo;t quite as easy as with <a href="http://www.capify.org">Capistrano</a>. I couldn&rsquo;t find much information on how to integrate the two so I thought I&rsquo;d share my solution.</p>
+
+<p>The original Hoptoad task for use with Capistrano needed a little modification.</p>
+
+<p><code>ruby
+task :notify_hoptoad do
+  rails_env = fetch(:rails_env, "production")
+  local_user = ENV['USER'] || ENV['USERNAME']
+  notify_command = "rake hoptoad:deploy TO=#{rails_env} REVISION=#{current_revision} REPO=#{repository} USER=#{local_user}"
+  puts "Notifying Hoptoad of Deploy (#{notify_command})"
+  `#{notify_command}`
+  puts "Hoptoad Notification Complete."
+end
+</code></p>
+
+<p>fetch is a Capistrano method so needed to be removed, we can use the <a href="http://hitsquad.rubyforge.org/vlad/doco/getting_started_txt.html">Vlad environment pattern</a> for this. I also wanted to use the git information for the user instead of the system user, finally as far as I can tell the git commit SHA being deployed is not available in Vlad.</p>
+
+<p>In the Vlad deployment script I added a Hoptoad task to replace the default Capistrano task provided by Hoptoad.</p>
+
+<p><code>ruby
+task :notify_hoptoad =&gt; [:git_user, :git_revision] do
+  notify_command = "rake hoptoad:deploy TO=#{rails_env} REVISION=#{current_sha} REPO=#{repository} USER='#{current_user}'"
+  puts "Notifying Hoptoad of Deploy (#{notify_command})"
+  `#{notify_command}`
+  puts "Hoptoad Notification Complete."
+end
+</code></p>
+
+<p>Then added it as a dependency for the deploy task</p>
+
+<p><code>ruby
+task :deploy =&gt; [:update, :migrate, :start_app, :notify_hoptoad]
+</code></p>
+
+<p>There are a couple of helper tasks I&rsquo;ve added to get the git user and the SHA of the commit being deployed</p>
+
+<p>``` ruby
+remote_task :git_revision do
+  set :current_sha, run(&ldquo;cd #{File.join(scm_path, &lsquo;repo&rsquo;)}; git rev-parse origin/master&rdquo;).strip
+end</p>
+
+<p>task :git_user do
+  set :current_user, <code>git config --get user.name</code>.strip
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

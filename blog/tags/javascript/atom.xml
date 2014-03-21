@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript | Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/blog/tags/javascript/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[BRUG talk]]></title>
+    <link href="http://kernowsoul.com/blog/2010/09/29/brug-talk/"/>
+    <updated>2010-09-29T15:38:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2010/09/29/brug-talk</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ll be doing a talk at <a href="http://bristolrb.org">BRUG</a> tomorrow evening (29th September 2010) on JavaScript <a href="http://kernowsoul.com/blog/tags/testing/">testing</a> covering some of the more awkward testing scenarios you may come across in <a href="http://kernowsoul.com/blog/tags/javascript/">JavaScript</a> land. This months BRUG is at <a href="http://wearebeef.co.uk/">Beef Towers</a>, hopefully we&rsquo;ll see some new faces this month.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Programatically simulating JavaScript events in a test environment]]></title>
+    <link href="http://kernowsoul.com/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/"/>
+    <updated>2010-08-20T16:32:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment</id>
+    <content type="html"><![CDATA[<p>Yesterday I was implementing a feature on <a href="http://tutorhub.com">tutorhub.com</a> where I wanted to disable the sending of chat messages when the party you&rsquo;re talking to goes offline. I ran into a problem while trying to write the tests for this feature and thought I&rsquo;d share it in case someone else finds it useful.</p>
+
+<p>When in a chat, messages are sent either using the send button or by pressing the enter key. Testing the correct behaviour on button press is straight forward. I&rsquo;m using <a href="http://pivotal.github.com/jasmine/">Jasmine</a> and <a href="https://github.com/kernow/jsmocha">jsMocha</a> for testing and <a href="http://jquery.com">jQuery</a> for implementation.</p>
+
+<p>``` javascript
+beforeEach(function() {
+  // code that disables the sending of messages here</p>
+
+<p>  // setup UI.runner for mocking
+  var mock = new Mock(UI.runner);</p>
+
+<p>  // add an expectation that raise is never called
+  UI.runner.expects(&lsquo;raise&rsquo;).passing(&lsquo;message_send&rsquo;, Match.an_object).never();
+});</p>
+
+<p>it(&ldquo;should not allow messages to be sent&rdquo;, function() {
+  // add some text to the textarea
+  $(&ldquo;#chat-form textarea&rdquo;).val(&ldquo;the text I want to send&rdquo;);</p>
+
+<p>  // simulate the click event
+  $(&ldquo;#send-button&rdquo;).click();
+});
+```</p>
+
+<p>Our UI code raises events that our main application code listens to in order to send out the messages. Here I setup a mock in the before block saying the raise method should never be called with the &lsquo;message_send&rsquo; parameter. Then in the test I insert some text into the text area and simulate a click event on the send button.</p>
+
+<p>It became slightly more tricky when I came to test the enter key functionality, our implementation code looks something like this:</p>
+
+<p>``` javascript
+$(&ldquo;#chat-form textarea&rdquo;).unbind().keyup(function(e){
+  if (e.which === 13) {</p>
+
+<pre><code>// send message code here
+</code></pre>
+
+<p>  }
+});
+```</p>
+
+<p>In order to programatically simulate a press of the enter key I needed to pass an event object containing a which value of 13. After a bit of hunting around I found the <a href="http://api.jquery.com/category/events/event-object/">jQuery.Event</a> object, that allows the creation of events which can then be fired. The test for disabling the enter key looked like this:</p>
+
+<p>``` javascript
+beforeEach(function() {
+  // code that disables the sending of messages here</p>
+
+<p>  // setup UI.runner for mocking
+  var mock = new Mock(UI.runner);</p>
+
+<p>  // add an expectation that raise is never called
+  UI.runner.expects(&lsquo;raise&rsquo;).passing(&lsquo;message_send&rsquo;, Match.an_object).never();
+});</p>
+
+<p>it(&ldquo;should not allow messages to be sent&rdquo;, function() {
+  // add some text to the textarea
+  $(&ldquo;#chat-form textarea&rdquo;).val(&ldquo;the text I want to send&rdquo;);</p>
+
+<p>  // create a new keyup event
+  var e = jQuery.Event(&ldquo;keyup&rdquo;);</p>
+
+<p>  // set the key that was pressed to the enter key
+  e.which = 13;</p>
+
+<p>  // trigger the event on the textarea element
+  $(&ldquo;#chat-form textarea&rdquo;).trigger(e);
+});
+```</p>
+
+<p>Using this technique it should be possible to programatically simulate any key event in a test environment.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing Scupper, the JavaScript library for easily dealing with HTML snippets in test suites]]></title>
+    <link href="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/"/>
+    <updated>2010-01-06T15:32:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites</id>
+    <content type="html"><![CDATA[<p>I came across a problem today while writing tests in JavaScript. The code I was testing required a snippet of HTML to work with. A user list needed to be reordered depending on their status. No problem I thought, I&rsquo;ll create div to store an HTML snippet, then before my test I&rsquo;ll duplicate and copy it into a test div.</p>
+
+<p>``` html</p>
+
+<div id="snippets" style="display:none">
+  <ul id="user-list-snippet">
+    <li id="user-0">Shaun White<span class='user-0-status'>busy</span></li>
+    <li id="user-1">Jeremy Jones<span class='user-1-status'>online</span></li>
+    <li id="user-2">Jake Burton<span class='user-2-status'>offline</span></li>
+    <li id="user-3">Tara Dakides<span class='user-3-status'>online</span></li>
+  </ul>
+</div>
+
+
+<p>```</p>
+
+<p>And the JavaScript to copy the element:</p>
+
+<p><code>javascript
+$("#user-list-snippet").clone().removeAttr("id").attr("id", "user-list").appendTo($('#dom_test'));
+</code></p>
+
+<p>Of course when working with id&rsquo;s in HTML they have to be unique so the technique caused some of the other tests in the suite to fail, I needed to find another way to do this. One thing I hate is using <a href="http://jquery.com">jQuery</a> to create more than a few dom elements as it gets complex very quickly and it&rsquo;s not easy to see if the code is producing the desired HTML at a glance.</p>
+
+<p>After taking a break I came up with a simple solution, the Scupper library was about to be written. I wanted to write snippets in HTML so I kept the snippet used in the first attempt. I then created a library that collected all of the snippets from the dom, storing them internally, before deleting them from the dom. This allowed the dom to be free from conflicting id&rsquo;s and general pollution. The HTML snippet became:</p>
+
+<p>``` html</p>
+
+<div id="snippets" style="display:none">
+  <div id="user-list-snippet">
+    <ul id="user-list">
+      <li id="user-0">Shaun White<span class='user-0-status'>busy</span></li>
+      <li id="user-1">Jeremy Jones<span class='user-1-status'>online</span></li>
+      <li id="user-2">Jake Burton<span class='user-2-status'>offline</span></li>
+      <li id="user-3">Tara Dakides<span class='user-3-status'>online</span></li>
+    </ul>
+  </div>
+</div>
+
+
+<p>```</p>
+
+<p>The containing div #user-list-snippet gives an element to latch onto in order to grab the contents inside. I created a method that sucks up all snippets inside a dom element and stores them:</p>
+
+<p>``` javascript
+init: function(element_id){
+  var element = $(&lsquo;#&rsquo; + element_id);
+  element.children().each(function(i, elm){</p>
+
+<pre><code>elm = $(elm);
+Scupper.items[elm.attr('id')] = elm.html();
+</code></pre>
+
+<p>  });
+  element.empty();
+}
+```</p>
+
+<p>All that was needed is an easy way to pull them out an insert them into the dom:</p>
+
+<p>``` javascript
+insert_into: function(source_id, destination_id){
+  return $(&lsquo;#&rsquo; + destination_id).append(Scupper.retrieve(source_id));
+},</p>
+
+<p>retrieve: function(id){
+  if(Scupper.items[id] !== undefined){</p>
+
+<pre><code>return Scupper.items[id];
+</code></pre>
+
+<p>  }else{</p>
+
+<pre><code>throw "Requested Scupper element not found with id: " + id;
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>Calling insert_into() grabs the snippet HTML and inserts it into the specified dom element ready for the test to use it.</p>
+
+<p>If you want to use Scupper the source is <a href="http://github.com/kernow/Scupper/">freely available on github</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Running JSLint through TextMate]]></title>
+    <link href="http://kernowsoul.com/blog/2009/04/27/running-jslint-through-textmate/"/>
+    <updated>2009-04-27T17:44:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/04/27/running-jslint-through-textmate</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE: I now use <a href="http://www.jshint.com/">jsHint</a> which is more configurable, there&rsquo;s an excellent <a href="http://fgnass.posterous.com/jslint-in-textmate">TextMate bundle</a> available</strong></p>
+
+<p>I&rsquo;ve been developing with JavaScript a lot recently and found <a href="http://www.jslint.com/">JSLint</a> to be a rather useful tool for picking up syntax errors. Being primarily a <a href="http://www.ruby-lang.org/en/">ruby</a> developer I have a nasty habit of omitting semicolons from the end of lines.</p>
+
+<p>I found an article on <a href="http://www.phpied.com/jslint-on-mac-textmate/">running JSLint through a TextMate command</a> but found <a href="http://wonko.com/post/pretty-jslint-output-for-textmate">Ryan&rsquo;s script</a> didn&rsquo;t quite work with the output from the version of JSLint I&rsquo;m using so I thought I&rsquo;d share my modifications.</p>
+
+<p>``` ruby</p>
+
+<h1>!/usr/bin/env ruby</h1>
+
+<p>require &lsquo;cgi&rsquo;</p>
+
+<p>lint = <code>/usr/bin/java -jar ~/Library/JSLint/js.jar ~/Library/JSLint/jslint.js "$TM_FILEPATH"</code></p>
+
+<p>lint.gsub!(/(line \d+ character \d+:) ([^\n]+)\n([^\n]+)/m) do
+  &ldquo;<p><strong>#{CGI.escapeHTML($1)}</strong> #{CGI.escapeHTML($2)}</p>&rdquo; &lt;&lt;</p>
+
+<pre><code>($3 ? "&lt;pre&gt;#{CGI.escapeHTML($3)}&lt;/pre&gt;" : '')
+</code></pre>
+
+<p>end</p>
+
+<p>lint.gsub!(/^(jslint:.*at )/, &lsquo;&rsquo;)</p>
+
+<p>print &lt;<HTML
+<!doctype>
+<html>
+<head>
+  <style type="text/css"></p>
+
+<pre><code>p { margin-bottom: 0; }
+pre {
+  background: #f5f5f5;
+  border: 1px solid #cfcfcf;
+  font-size: 12px;
+  margin-top: 2px;
+  padding: 2px 4px;
+}
+</code></pre>
+
+<p>  </style>
+</head>
+<body>
+  #{lint}
+</body>
+</html>
+HTML
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[javascript_auto_include plugin updated]]></title>
+    <link href="http://kernowsoul.com/blog/2008/12/02/javascriptautoinclude-plugin-updated/"/>
+    <updated>2008-12-02T16:04:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/12/02/javascriptautoinclude-plugin-updated</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE: This plugin is no longer maintained, I recommend using the <a href="https://rubygems.org/gems/sprockets">Sprockets gem</a>.</strong></p>
+
+<p>I&rsquo;ve updated the <a href="https://github.com/kernow/javascript_auto_include">javascript_auto_include plugin</a> to include changes from <a href="http://github.com/abradburne">abradburne</a> and <a href="http://github.com/jimp79">jimp79</a>. Thanks to these guys the plugin now supports nested controllers so you can add javascript to a paths like admin/users and admin/users/show/1 etc.</p>
+]]></content>
+  </entry>
+  
+</feed>

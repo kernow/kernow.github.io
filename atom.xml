@@ -1,117 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Kernow Soul</title>
-  <meta name="author" content="Jamie Dyer">
-
-  
-  <meta name="description" content="Having been both a competitor and an expert judge in the Rails Rumble I have a unique insight into what makes a good entry and some of the pitfalls &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://kernowsoul.com">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Kernow Soul" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-28880530-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><a href="https://github.com/kernow"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
-<hgroup>
-  <h1><a href="/">Kernow Soul</a></h1>
-  
-    <h2>Ruby, Rails and JavaScript Consultant</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:kernowsoul.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/hire-me">Hire Me</a></li>
-  <li><a href="/blog">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Kernow Soul]]></title>
+  <link href="http://kernowsoul.com/atom.xml" rel="self"/>
+  <link href="http://kernowsoul.com/"/>
+  <updated>2014-03-21T14:54:07+00:00</updated>
+  <id>http://kernowsoul.com/</id>
+  <author>
+    <name><![CDATA[Jamie Dyer]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2013/10/16/how-to-rumble-like-a-boss/">How to Rumble Like a Boss</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2013-10-16T16:43:00+01:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/10/16/how-to-rumble-like-a-boss/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2013/10/16/how-to-rumble-like-a-boss/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="right" src="/images/posts/rails-rumble-logo.png" title="Rails Rumble Logo" ></p>
+  <entry>
+    <title type="html"><![CDATA[How to Rumble Like a Boss]]></title>
+    <link href="http://kernowsoul.com/blog/2013/10/16/how-to-rumble-like-a-boss/"/>
+    <updated>2013-10-16T16:43:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2013/10/16/how-to-rumble-like-a-boss</id>
+    <content type="html"><![CDATA[<p><img class="right" src="http://kernowsoul.com/images/posts/rails-rumble-logo.png" title="Rails Rumble Logo" ></p>
 
 <p>Having been both a <a href="http://railsrumble.com/participants">competitor</a> and an <a href="http://railsrumble.com/experts">expert judge</a> in the <a href="http://railsrumble.com/">Rails Rumble</a> I have a unique  insight into what makes a good entry and some of the pitfalls entrants can fall into when building their applications.</p>
 
@@ -138,45 +45,15 @@ Design IS important, don&rsquo;t make it an after thought. If you don&rsquo;t ha
 
 
 <p>Hopefully these tips will help you in creating an app with the best chance of doing well in the <a href="http://railsrumble.com/">Rails Rumble</a>. Good luck and I look forward to seeing what the teams come up with this year.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/">4 Ways to Avoid Merge Commits in Git (or How to Stop Being a Git Twit)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-20T00:49:00+01:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time>
-        
-           | <a href="/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;m sure you&rsquo;ve all come across merge commits when using Git, those pesky commits with a message reading something like <code>Merge branch 'master' of github.com:kernow/Project-X</code>. We&rsquo;ve all been guilty of creating git merge commits, but don&rsquo;t worry there&rsquo;s a way to stop being a &ldquo;Git Twit&rdquo; and make everyone in your team happy which will no doubt lead to them buying you cake! But first, how do these commits get into the repository in the first place? You start out being a good gitizen, <code>git checkout master</code>, <code>git pull</code>, feverishly code away, commit, commit, commit. Woo I&rsquo;m done, everyone will love my wicked new code! <code>git push</code> rejection!! what! Other people have been working too, jerks. <code>git pull</code>, <code>git push</code>, and there we have it, a merge commit. So how do we stop this madness?</p>
+  <entry>
+    <title type="html"><![CDATA[4 Ways to Avoid Merge Commits in Git (or How to Stop Being a Git Twit)]]></title>
+    <link href="http://kernowsoul.com/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/"/>
+    <updated>2012-06-20T00:49:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m sure you&rsquo;ve all come across merge commits when using Git, those pesky commits with a message reading something like <code>Merge branch 'master' of github.com:kernow/Project-X</code>. We&rsquo;ve all been guilty of creating git merge commits, but don&rsquo;t worry there&rsquo;s a way to stop being a &ldquo;Git Twit&rdquo; and make everyone in your team happy which will no doubt lead to them buying you cake! But first, how do these commits get into the repository in the first place? You start out being a good gitizen, <code>git checkout master</code>, <code>git pull</code>, feverishly code away, commit, commit, commit. Woo I&rsquo;m done, everyone will love my wicked new code! <code>git push</code> rejection!! what! Other people have been working too, jerks. <code>git pull</code>, <code>git push</code>, and there we have it, a merge commit. So how do we stop this madness?</p>
 
 <h3>Rebase to the rescue</h3>
 
@@ -206,84 +83,24 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 
 
 <p>Of course you could use the 3rd solution and run the command <code>git pull --no-rebase</code> but that involves more typing, and I&rsquo;m a lazy typer!</p>
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[BRUG Talk]]></title>
+    <link href="http://kernowsoul.com/blog/2010/09/29/brug-talk/"/>
+    <updated>2010-09-29T15:38:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2010/09/29/brug-talk</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ll be doing a talk at <a href="http://bristolrb.org">BRUG</a> tomorrow evening (29th September 2010) on JavaScript <a href="http://kernowsoul.com/blog/tags/testing/">testing</a> covering some of the more awkward testing scenarios you may come across in <a href="http://kernowsoul.com/blog/tags/javascript/">JavaScript</a> land. This months BRUG is at <a href="http://wearebeef.co.uk/">Beef Towers</a>, hopefully we&rsquo;ll see some new faces this month.</p>
+]]></content>
+  </entry>
   
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/09/29/brug-talk/">BRUG Talk</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-09-29T15:38:00+01:00" pubdate data-updated="true">Sep 29<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/09/29/brug-talk/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2010/09/29/brug-talk/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ll be doing a talk at <a href="http://bristolrb.org">BRUG</a> tomorrow evening (29th September 2010) on JavaScript <a href="/blog/tags/testing/">testing</a> covering some of the more awkward testing scenarios you may come across in <a href="/blog/tags/javascript/">JavaScript</a> land. This months BRUG is at <a href="http://wearebeef.co.uk/">Beef Towers</a>, hopefully we&rsquo;ll see some new faces this month.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/">Programatically Simulating JavaScript Events in a Test Environment</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-20T16:32:00+01:00" pubdate data-updated="true">Aug 20<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yesterday I was implementing a feature on <a href="http://tutorhub.com">tutorhub.com</a> where I wanted to disable the sending of chat messages when the party you&rsquo;re talking to goes offline. I ran into a problem while trying to write the tests for this feature and thought I&rsquo;d share it in case someone else finds it useful.</p>
+  <entry>
+    <title type="html"><![CDATA[Programatically Simulating JavaScript Events in a Test Environment]]></title>
+    <link href="http://kernowsoul.com/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/"/>
+    <updated>2010-08-20T16:32:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment</id>
+    <content type="html"><![CDATA[<p>Yesterday I was implementing a feature on <a href="http://tutorhub.com">tutorhub.com</a> where I wanted to disable the sending of chat messages when the party you&rsquo;re talking to goes offline. I ran into a problem while trying to write the tests for this feature and thought I&rsquo;d share it in case someone else finds it useful.</p>
 
 <p>When in a chat, messages are sent either using the send button or by pressing the enter key. Testing the correct behaviour on button press is straight forward. I&rsquo;m using <a href="http://pivotal.github.com/jasmine/">Jasmine</a> and <a href="https://github.com/kernow/jsmocha">jsMocha</a> for testing and <a href="http://jquery.com">jQuery</a> for implementation.</p>
 
@@ -393,45 +210,15 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 
 
 <p>Using this technique it should be possible to programatically simulate any key event in a test environment.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/">Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-06T15:32:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I came across a problem today while writing tests in JavaScript. The code I was testing required a snippet of HTML to work with. A user list needed to be reordered depending on their status. No problem I thought, I&rsquo;ll create div to store an HTML snippet, then before my test I&rsquo;ll duplicate and copy it into a test div.</p>
+  <entry>
+    <title type="html"><![CDATA[Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites]]></title>
+    <link href="http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/"/>
+    <updated>2010-01-06T15:32:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites</id>
+    <content type="html"><![CDATA[<p>I came across a problem today while writing tests in JavaScript. The code I was testing required a snippet of HTML to work with. A user list needed to be reordered depending on their status. No problem I thought, I&rsquo;ll create div to store an HTML snippet, then before my test I&rsquo;ll duplicate and copy it into a test div.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -537,45 +324,15 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 <p>Calling insert_into() grabs the snippet HTML and inserts it into the specified dom element ready for the test to use it.</p>
 
 <p>If you want to use Scupper the source is <a href="http://github.com/kernow/Scupper/">freely available on github</a>.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/10/07/shoulda-macro-shouldrenderaformto/">Shoulda Macro Should_render_a_form_to</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-07T16:49:00+01:00" pubdate data-updated="true">Oct 7<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/10/07/shoulda-macro-shouldrenderaformto/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2009/10/07/shoulda-macro-shouldrenderaformto/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve been writing a fair number of functional tests recently, one thing that kept cropping up was the need to check if a form had been rendered and that it is going to perform a particular action. Shoulda has a should_render_a_form macro, unfortunately it&rsquo;s been depreciated and doesn&rsquo;t do anything other than check a form element has been rendered in the view.</p>
+  <entry>
+    <title type="html"><![CDATA[Shoulda Macro Should_render_a_form_to]]></title>
+    <link href="http://kernowsoul.com/blog/2009/10/07/shoulda-macro-shouldrenderaformto/"/>
+    <updated>2009-10-07T16:49:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/10/07/shoulda-macro-shouldrenderaformto</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been writing a fair number of functional tests recently, one thing that kept cropping up was the need to check if a form had been rendered and that it is going to perform a particular action. Shoulda has a should_render_a_form macro, unfortunately it&rsquo;s been depreciated and doesn&rsquo;t do anything other than check a form element has been rendered in the view.</p>
 
 <p>I decided to come up with my own macro that checks the specifics of a form element, enter should_render_a_form_to. This takes three arguments, a description, an options hash and a block that contains the expected url. You can use the macro as follows&hellip;</p>
 
@@ -661,45 +418,15 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 
 
 <p>The macro checks both the forms action attribute as well as the hidden input rails uses to specify the method where necessary. I&rsquo;ve also been playing with creating a macro to check for a form with specific fields such as should_render_a_form_with_fields. This is proving to be slightly more difficult than I originally anticipated and defining a nice interface to the method has been rather tricky.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/">Vlad the Deployer Hoptoad Integration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-04T11:46:00+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve just had to setup <a href="http://hoptoadapp.com">Hoptoad</a> for one of our apps that uses <a href="http://rubyhitsquad.com/Vlad_the_Deployer.html">Vlad</a> for deployment, the integration isn&rsquo;t quite as easy as with <a href="http://www.capify.org">Capistrano</a>. I couldn&rsquo;t find much information on how to integrate the two so I thought I&rsquo;d share my solution.</p>
+  <entry>
+    <title type="html"><![CDATA[Vlad the Deployer Hoptoad Integration]]></title>
+    <link href="http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration/"/>
+    <updated>2009-09-04T11:46:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/09/04/vlad-the-deployer-hoptoad-integration</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just had to setup <a href="http://hoptoadapp.com">Hoptoad</a> for one of our apps that uses <a href="http://rubyhitsquad.com/Vlad_the_Deployer.html">Vlad</a> for deployment, the integration isn&rsquo;t quite as easy as with <a href="http://www.capify.org">Capistrano</a>. I couldn&rsquo;t find much information on how to integrate the two so I thought I&rsquo;d share my solution.</p>
 
 <p>The original Hoptoad task for use with Capistrano needed a little modification.</p>
 
@@ -766,45 +493,15 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours/">For the Love of Table Football, Why I Stayed Up for 48 Hours</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-24T01:05:00+01:00" pubdate data-updated="true">Aug 24<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Update:</strong> wuzlr.com is no longer a live site</p>
+  <entry>
+    <title type="html"><![CDATA[For the Love of Table Football, Why I Stayed Up for 48 Hours]]></title>
+    <link href="http://kernowsoul.com/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours/"/>
+    <updated>2009-08-24T01:05:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/08/24/for-the-love-of-table-football-why-i-stayed-up-for-48-hours</id>
+    <content type="html"><![CDATA[<p><strong>Update:</strong> wuzlr.com is no longer a live site</p>
 
 <p>What a weekend! it all started on Friday night, a feverish last minute planning session began on how we would implement &#8220;Wuzlr&#8221;. We&#8217;d bounced around some ideas earlier in the week and had a pretty good idea of what we wanted, whittling that down into a set of features we could implement in 48 hours was no easy task, there was so many good ideas and we didn&#8217;t have time to implement them all. At 1am it all began&#8230;</p>
 
@@ -841,11 +538,11 @@ I have a bunch of aliases setup so I can type less and save myself those valuabl
 <s>Check out the <a href="#">Jiva office league</a></s></li>
 
   <li>Compare yourself to other players,
-Me Vs. Theo <br /><img src="/images/uploaded/wuzlr-compare.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
+Me Vs. Theo <br /><img src="http://kernowsoul.com/images/uploaded/wuzlr-compare.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
 
   <li>View your nemesis, best team mate, worst team mate and more, <s><a href="#">my player page</a></s></li>
 
-  <li>League standings, games played per day, table bias, most dedicated players (who&#8217;s put the most time in) <br /><img src="/images/uploaded/wuzlr-graphs.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
+  <li>League standings, games played per day, table bias, most dedicated players (who&#8217;s put the most time in) <br /><img src="http://kernowsoul.com/images/uploaded/wuzlr-graphs.jpg" style="margin-top: 20px;margin-bottom: 20px;" /></li>
 </ul>
 
 
@@ -867,90 +564,30 @@ Me Vs. Theo <br /><img src="/images/uploaded/wuzlr-compare.jpg" style="margin-to
 
 <p>Yes we know the site looks terrible in IE, who uses IE anyway?</p>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/04/my-computer-loves-autotest-fsevent/">My Computer Loves Autotest-fsevent</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-04T13:10:00+01:00" pubdate data-updated="true">Jun 4<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/06/04/my-computer-loves-autotest-fsevent/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2009/06/04/my-computer-loves-autotest-fsevent/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;m a big fan of <a href="http://www.zenspider.com/ZSS/Products/ZenTest/">autotest</a> for testing, unfortunately it does stress my poor MacBook Pro and makes the fan go berserk if running anything other than the most simple of test suites. This is due to autotest having to check each file in your project for changes.</p>
+  <entry>
+    <title type="html"><![CDATA[My Computer Loves Autotest-fsevent]]></title>
+    <link href="http://kernowsoul.com/blog/2009/06/04/my-computer-loves-autotest-fsevent/"/>
+    <updated>2009-06-04T13:10:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/06/04/my-computer-loves-autotest-fsevent</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m a big fan of <a href="http://www.zenspider.com/ZSS/Products/ZenTest/">autotest</a> for testing, unfortunately it does stress my poor MacBook Pro and makes the fan go berserk if running anything other than the most simple of test suites. This is due to autotest having to check each file in your project for changes.</p>
 
 <p>No more will autotest stress out my mac, <a href="http://www.bitcetera.com/en/products/autotest-fsevent">autotest-fsevent</a> is a great gem that uses OS X&rsquo;s FSEvent system to be notified when files have changed rather than having to constantly poll the filesystem. You need mac OS X 10.5 or later to take advantage of FSEvent.</p>
 
 <p>The other nice thing autotest-fsevent does is take care of all the .autotest config options, I managed to delete my entire config file which I&rsquo;ve been tweaking for as long as I can remember trying to get the perfect setup.</p>
 
 <p>I can now run even the most demanding of test suites and my computer barely breaks a sweat. Thanks <a href="http://www.bitcetera.com">bitcetera</a>, my computer &hearts;&rsquo;s you.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/">DRYing Up Multiple User Contexts With Shoulda Macros</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-22T00:14:00+01:00" pubdate data-updated="true">May 22<span>nd</span>, 2009</time>
-        
-           | <a href="/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/#disqus_thread"
-             data-disqus-identifier="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today I&rsquo;ve been writing tests for a legacy Rails application I inherited recently. The application has several user roles, each role having varying permissions. To deal with this nicely I setup <a href="http://thoughtbot.com/projects/shoulda">shoulda</a> macro&rsquo;s to create contexts for each of the user roles, public user, standard user, admin user etc. then in my tests I could write&hellip;</p>
+  <entry>
+    <title type="html"><![CDATA[DRYing Up Multiple User Contexts With Shoulda Macros]]></title>
+    <link href="http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros/"/>
+    <updated>2009-05-22T00:14:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/05/22/drying-up-multiple-user-contexts-with-shoulda-macros</id>
+    <content type="html"><![CDATA[<p>Today I&rsquo;ve been writing tests for a legacy Rails application I inherited recently. The application has several user roles, each role having varying permissions. To deal with this nicely I setup <a href="http://thoughtbot.com/projects/shoulda">shoulda</a> macro&rsquo;s to create contexts for each of the user roles, public user, standard user, admin user etc. then in my tests I could write&hellip;</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1080,103 +717,230 @@ Me Vs. Theo <br /><img src="/images/uploaded/wuzlr-compare.jpg" style="margin-to
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Running JSLint Through TextMate]]></title>
+    <link href="http://kernowsoul.com/blog/2009/04/27/running-jslint-through-textmate/"/>
+    <updated>2009-04-27T17:44:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2009/04/27/running-jslint-through-textmate</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE: I now use <a href="http://www.jshint.com/">jsHint</a> which is more configurable, there&rsquo;s an excellent <a href="http://fgnass.posterous.com/jslint-in-textmate">TextMate bundle</a> available</strong></p>
+
+<p>I&rsquo;ve been developing with JavaScript a lot recently and found <a href="http://www.jslint.com/">JSLint</a> to be a rather useful tool for picking up syntax errors. Being primarily a <a href="http://www.ruby-lang.org/en/">ruby</a> developer I have a nasty habit of omitting semicolons from the end of lines.</p>
+
+<p>I found an article on <a href="http://www.phpied.com/jslint-on-mac-textmate/">running JSLint through a TextMate command</a> but found <a href="http://wonko.com/post/pretty-jslint-output-for-textmate">Ryan&rsquo;s script</a> didn&rsquo;t quite work with the output from the version of JSLint I&rsquo;m using so I thought I&rsquo;d share my modifications.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;cgi&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lint</span> <span class="o">=</span> <span class="sb">`/usr/bin/java -jar ~/Library/JSLint/js.jar ~/Library/JSLint/jslint.js &quot;$TM_FILEPATH&quot;`</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lint</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/(line \d+ character \d+:) ([^\n]+)\n([^\n]+)/m</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="s2">&quot;&lt;p&gt;&lt;strong&gt;</span><span class="si">#{</span><span class="no">CGI</span><span class="o">.</span><span class="n">escapeHTML</span><span class="p">(</span><span class="vg">$1</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/strong&gt; </span><span class="si">#{</span><span class="no">CGI</span><span class="o">.</span><span class="n">escapeHTML</span><span class="p">(</span><span class="vg">$2</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span> <span class="o">&lt;&lt;</span>
+</span><span class='line'>    <span class="p">(</span><span class="vg">$3</span> <span class="p">?</span> <span class="s2">&quot;&lt;pre&gt;</span><span class="si">#{</span><span class="no">CGI</span><span class="o">.</span><span class="n">escapeHTML</span><span class="p">(</span><span class="vg">$3</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/pre&gt;&quot;</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lint</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/^(jslint:.*at )/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="o">&lt;&lt;</span><span class="no">HTML</span>
+</span><span class='line'><span class="sh">&lt;!doctype&gt;</span>
+</span><span class='line'><span class="sh">&lt;html&gt;</span>
+</span><span class='line'><span class="sh">&lt;head&gt;</span>
+</span><span class='line'><span class="sh">  &lt;style type=&quot;text/css&quot;&gt;</span>
+</span><span class='line'><span class="sh">    p { margin-bottom: 0; }</span>
+</span><span class='line'><span class="sh">    pre {</span>
+</span><span class='line'><span class="sh">      background: #f5f5f5;</span>
+</span><span class='line'><span class="sh">      border: 1px solid #cfcfcf;</span>
+</span><span class='line'><span class="sh">      font-size: 12px;</span>
+</span><span class='line'><span class="sh">      margin-top: 2px;</span>
+</span><span class='line'><span class="sh">      padding: 2px 4px;</span>
+</span><span class='line'><span class="sh">    }</span>
+</span><span class='line'><span class="sh">  &lt;/style&gt;</span>
+</span><span class='line'><span class="sh">&lt;/head&gt;</span>
+</span><span class='line'><span class="sh">&lt;body&gt;</span>
+</span><span class='line'><span class="sh">  #{lint}</span>
+</span><span class='line'><span class="sh">&lt;/body&gt;</span>
+</span><span class='line'><span class="sh">&lt;/html&gt;</span>
+</span><span class='line'><span class="no">HTML</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[New Bars and Rubber for the Steed]]></title>
+    <link href="http://kernowsoul.com/blog/2008/12/22/new-bars-and-rubber-for-the-steed/"/>
+    <updated>2008-12-22T20:18:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/12/22/new-bars-and-rubber-for-the-steed</id>
+    <content type="html"><![CDATA[<p><img src="http://kernowsoul.com/images/uploaded/bike-iphone.jpg" alt="Lemond Fillmore with bull horn bars and orange rubber" /></p>
 
+<p>A couple of weeks ago I had to replace the old tires on my Fillmore as I&rsquo;d worn through the green ones that came with the bike. Took a bit of getting used to the orange but it&rsquo;s definitely growing on me.</p>
 
-    </article>
+<p>This last weekend I managed a puncture the inner tube while pulling the pump off which required a trip to <a href="http://www.stradacycles.co.uk/"/>Strada Cycles</a>. I ended up replacing the bars and break callipers so it turned out to be a much more expensive trip than I was expecting. Just shy of £100 got me a new inner tube and I was back on the road again.</p>
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
+  <entry>
+    <title type="html"><![CDATA[Javascript_auto_include Plugin Updated]]></title>
+    <link href="http://kernowsoul.com/blog/2008/12/02/javascriptautoinclude-plugin-updated/"/>
+    <updated>2008-12-02T16:04:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/12/02/javascriptautoinclude-plugin-updated</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE: This plugin is no longer maintained, I recommend using the <a href="https://rubygems.org/gems/sprockets">Sprockets gem</a>.</strong></p>
+
+<p>I&rsquo;ve updated the <a href="https://github.com/kernow/javascript_auto_include">javascript_auto_include plugin</a> to include changes from <a href="http://github.com/abradburne">abradburne</a> and <a href="http://github.com/jimp79">jimp79</a>. Thanks to these guys the plugin now supports nested controllers so you can add javascript to a paths like admin/users and admin/users/show/1 etc.</p>
+]]></content>
+  </entry>
   
-    <section>
-  <h1>Jamie Dyer is a Ruby, Rails and JavaScript consultant based in Bristol, UK.</h1>
-  <p>If you&#8217;d like to hire me to work on your project please <a href="/hire-me">get in touch</a>.</p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/16/how-to-rumble-like-a-boss/">How to Rumble Like a Boss</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/20/4-ways-to-avoid-merge-commits-in-git/">4 Ways to Avoid Merge Commits in Git (or How to Stop Being a Git Twit)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2010/09/29/brug-talk/">BRUG Talk</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2010/08/20/programatically-simulating-javascript-events-in-a-test-environment/">Programatically Simulating JavaScript Events in a Test Environment</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2010/01/06/introducing-scupper-the-javascript-library-for-easily-dealing-with-html-snippets-in-test-suites/">Introducing Scupper, the JavaScript Library for Easily Dealing With HTML Snippets in Test Suites</a>
-      </li>
-    
-  </ul>
-</section>
-
-<a href="https://twitter.com/kernowsoul" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @kernowsoul</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-
+  <entry>
+    <title type="html"><![CDATA[MySQL Order by Rand on Large Data Sets]]></title>
+    <link href="http://kernowsoul.com/blog/2008/12/01/mysql-order-by-rand-on-large-data-sets/"/>
+    <updated>2008-12-01T17:50:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/12/01/mysql-order-by-rand-on-large-data-sets</id>
+    <content type="html"><![CDATA[<p>More of a note to self than a real post. <a href="http://www.paperplanes.de/archives/2008/4/24/mysql_nonos_order_by_rand/">Great solution to extremely slow order by rand() queries</a> when used on large data sets. Using this technique a query previously taking nearly 0.2 seconds was reduced to around 0.01 seconds.</p>
+]]></content>
+  </entry>
   
-</aside>
+  <entry>
+    <title type="html"><![CDATA[Running Merb on a Shared Host Without Compiler Permissions]]></title>
+    <link href="http://kernowsoul.com/blog/2008/11/21/running-merb-on-a-shared-host-without-compiler-permissions/"/>
+    <updated>2008-11-21T13:54:00+00:00</updated>
+    <id>http://kernowsoul.com/blog/2008/11/21/running-merb-on-a-shared-host-without-compiler-permissions</id>
+    <content type="html"><![CDATA[<p>I ran into a problem earlier today when testing a <a href="http://merbivore.com">Merb</a> application in a shared hosting environment running <a href="http://www.modrails.com">Phusion Passenger</a>. Like most shared hosts access to compilers is not allowed for obvious security reasons, this causes a problem when trying to run a Merb app. Merb makes use of <a href="http://rubyforge.org/projects/rubyinline/">RubyInline</a> which needs to compile a C application in your home folder before it can run so when the user you&rsquo;re running Merb under doesn&rsquo;t have permission to run C compilers you&rsquo;ll get an error similar to:</p>
 
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jamie Dyer -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sh: /usr/bin/gcc: Permission denied
+</span></code></pre></td></tr></table></div></figure>
 
-</footer>
+
+<p>The way to get around this is to have a privileged user compile the C application for you, then copy it to your users home folder. The easiest way to do this is to generate and run a Merb app as the root user:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>merb-gen app tmp-merb
+</span><span class='line'>merb
+</span><span class='line'>Ctrl+C
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then copy the RubyInline C application to the users home folder:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -R /root/.ruby_inline /home/&lt;username&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Make sure the file ownership is set correctly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chown -R &lt;username&gt;:&lt;username&gt; /home/&lt;username&gt;/.ruby_inline
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this you should be able to run Merb as expected. If you&rsquo;re still getting errors relating to file permissions after following the instructions above you&rsquo;ll need to combine the fix from <a href="http://www.viget.com/extend/rubyinline-in-shared-rails-environments/">Vignet</a> and put the .ruby_inline folder in a place accessible to both the apache user and the user running the Merb app, I&rsquo;ve not tested this but it should work.</p>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Updating RubyGems on OSX]]></title>
+    <link href="http://kernowsoul.com/blog/2008/10/23/updating-rubygems-on-osx/"/>
+    <updated>2008-10-23T23:54:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/10/23/updating-rubygems-on-osx</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE: This article is now rather old, Ruby Gems 1.8.15 is the latest version and should be <a href="https://rubygems.org/pages/download">grabbed from here</a></strong></p>
 
-<script type="text/javascript">
-      var disqus_shortname = 'kernowsoul';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+<p>Slightly late to the show I updated to RubyGems 1.3.0 today, the upgrade isn&rsquo;t as straight forward as usual on OSX 10.5 and requires a little extra work.</p>
 
+<p><a href="http://rails.wincent.com">wincent.com</a> posted up some <a href="http://rails.wincent.com/wiki/Updating_to_RubyGems_1.3.0_on_Mac_OS_X_Leopard_10.5.4">instructions on how to upgrade to RubyGems 1.3.0</a> which are useful for anyone having issues.</p>
 
+<p><strong>UPDATE:</strong> It looks like this issue is not specific to OSX, I was updating a couple of Linux servers and had to follow the same procedure.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Colour Profiles in Photoshop for Web Design]]></title>
+    <link href="http://kernowsoul.com/blog/2008/09/26/colour-profiles-in-photoshop-for-web-design/"/>
+    <updated>2008-09-26T18:06:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/09/26/colour-profiles-in-photoshop-for-web-design</id>
+    <content type="html"><![CDATA[<p>While getting the photo of my <a href="http://kernowsoul.com/blog/2008/09/26/my-new-business-cards-have-arrived/">new business card</a> ready for the web I fired up Photoshop on the laptop. I soon realised I&rsquo;d not used Photoshop on the laptop before, when I hit the save for web button my lovely photo changed into something hideously washed out. As someone who rarely uses Photoshop these days I always forget how to set-up colour profiles and spent quite some time doing this on the desktop machine.</p>
 
+<p>To my relief a quick google search and a couple of minutes later I was all set-up and had exported my photo exactly how it should be. Thanks <a href="http://www.usabilitypost.com">Usability Post</a> for your amazingly simple and accurate <a href="http://www.usabilitypost.com/2008/07/30/photoshop-color-profiles-for-web-images/">guide to setting up colour profiles for web design</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My New Business Cards Have Arrived]]></title>
+    <link href="http://kernowsoul.com/blog/2008/09/26/my-new-business-cards-have-arrived/"/>
+    <updated>2008-09-26T17:55:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/09/26/my-new-business-cards-have-arrived</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been making do with some terrible old business cards for the last few years and thought it was about time for some nice new ones. I wanted to go for something clean and simple so designed them with just a little type, a bit of custom kerning then shot them off to the <a href="http://moo.com">nice little moo bot</a> for printing. I have to say I do quite like the playful tone and little touches moo uses in their communications, it makes you feel happy.</p>
 
+<p><img src="http://kernowsoul.com/images/uploaded/business-card.jpg" alt="Jamie Dyer business card" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Is Anyone Else Excited About Merb 1.0?]]></title>
+    <link href="http://kernowsoul.com/blog/2008/09/26/is-anyone-else-excited-about-merb-10/"/>
+    <updated>2008-09-26T00:03:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/09/26/is-anyone-else-excited-about-merb-10</id>
+    <content type="html"><![CDATA[<p>I certainly am, Merb 1.0 is due to be announced at <a href="http://www.merbcamp.com">MerbCamp</a> on the 11th October 2008. Right now the guys are hard at work polishing the knobs and working on documentation.</p>
 
+<p>I&rsquo;ve been following <a href="http://merbivore.com">Merb</a> with interest ever since I first heard about it. One of the things I found hard to keep up with &ndash; just dipping into it now and then &ndash; was the speed of development and change. Every time I had a few minutes to play with it everything had changed. Its a bit like having the rug pulled out from under you every time you manage to get to your knees.</p>
 
+<p>The 1.0 release Merb should be far more stable, and with some decent documentation I hope it will start taking off quickly, the barrier to entry will be greatly reduced. Even though I won&rsquo;t be at MerbCamp I&rsquo;ll certainly be following it closely.</p>
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+<p>I wonder if the 1.0 release will be promptly followed by a 1.0.1 release, as is tradition.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UK Does It Better... I Agree]]></title>
+    <link href="http://kernowsoul.com/blog/2008/09/21/uk-does-it-better-i-agree/"/>
+    <updated>2008-09-21T14:43:00+01:00</updated>
+    <id>http://kernowsoul.com/blog/2008/09/21/uk-does-it-better-i-agree</id>
+    <content type="html"><![CDATA[<p>So the rain has backed off for the first sustained period since I moved back to the UK, I&rsquo;ve taken the opportunity to lay on the grass in the sun and read a book I picked up the other day, <a href="http://punkmarketing.com">Punk Marketing</a>. Not that far in and I&rsquo;m all ready enjoying it, who would have thought a book on marketing could be entertaining!</p>
 
+<p>I came across a quote I thought I would share&hellip;</p>
 
+<blockquote><p>&ldquo;Go to a multiplex, sit through the ads, and see how abused you feel by the start of the movie. Then to to a cinema in the UK and motive that most people turn up to view those commercials. Because they are actually fun-sensible and intriguing and full of messages that make people applaud.Yes, shout out with glee! These are entertaining, funny, well-produced, and cool. Four terms you&rsquo;d never use to describe an ad at movies in the US of A today.&rdquo;</p></blockquote>
 
+<p>I couldn&rsquo;t agree more, those poor Canadians are force fed the majority the USA&rsquo;s crappy ads. What&rsquo;s probably worse is that often the product or service isn&rsquo;t even available to them! I digress, having suffered with the Canadians for the last three years I can say I would gladly watch several hours of English commercials than a single US ad break.</p>
 
-
-</body>
-</html>
+<p>In closing&hellip; Well done Britain, we produce some of the best ads in the world.</p>
+]]></content>
+  </entry>
+  
+</feed>
